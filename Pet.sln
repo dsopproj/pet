@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{B3D69737-650D-4A4C-9908-3DB4777559D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet.SDK", "SDK\Pet.SDK\Pet.SDK.csproj", "{E87F3037-1BC7-4EF0-88BC-B14AC63FF2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet", "Pet\Pet.csproj", "{58A8B389-1222-4506-BC28-794DDECD2034}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Importer", "Importer", "{CE930012-17CC-43C2-BCB4-DBC7A201D85C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet.Importer", "Importer\Pet.Importer\Pet.Importer.csproj", "{B265C424-D755-403D-8AED-BA2ABDA34AFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editor", "Editor", "{1F22AC2C-2132-44D5-885C-B5C7BE271E9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pet.Editor", "Editor\Pet.Editor\Pet.Editor.csproj", "{048CFE10-4A83-4C11-A088-431A57FABF85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E87F3037-1BC7-4EF0-88BC-B14AC63FF2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E87F3037-1BC7-4EF0-88BC-B14AC63FF2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E87F3037-1BC7-4EF0-88BC-B14AC63FF2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E87F3037-1BC7-4EF0-88BC-B14AC63FF2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58A8B389-1222-4506-BC28-794DDECD2034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A8B389-1222-4506-BC28-794DDECD2034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A8B389-1222-4506-BC28-794DDECD2034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A8B389-1222-4506-BC28-794DDECD2034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B265C424-D755-403D-8AED-BA2ABDA34AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B265C424-D755-403D-8AED-BA2ABDA34AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B265C424-D755-403D-8AED-BA2ABDA34AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B265C424-D755-403D-8AED-BA2ABDA34AFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048CFE10-4A83-4C11-A088-431A57FABF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048CFE10-4A83-4C11-A088-431A57FABF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048CFE10-4A83-4C11-A088-431A57FABF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048CFE10-4A83-4C11-A088-431A57FABF85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E87F3037-1BC7-4EF0-88BC-B14AC63FF2F5} = {B3D69737-650D-4A4C-9908-3DB4777559D1}
+	EndGlobalSection
+EndGlobal

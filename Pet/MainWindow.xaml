@@ -1,0 +1,9 @@
+﻿<Window x:Class="Pet.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="WhiteSmoke"
+        Title="MainWindow" MinHeight="350" MinWidth="525" >
+    <Grid x:Name="LayoutRoot">
+        <Button Content="load" HorizontalAlignment="Right" Margin="0,0,10,50" VerticalAlignment="Bottom" Width="100"/>
+        <Button x:Name="CreatePlayer" Content="CreatePlayer" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Bottom" Width="100"/>
+    </Grid>
+</Window>

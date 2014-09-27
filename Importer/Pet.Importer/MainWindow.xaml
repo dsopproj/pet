@@ -1,0 +1,13 @@
+﻿<Window x:Class="Pet.Importer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button x:Name="ImportSpriter" Content="1.ImportSpriter" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Click="ImportSpriter_Click"/>
+
+        <Button x:Name="CreateUser" Content="2.CreateUser" HorizontalAlignment="Left" Margin="10,50" VerticalAlignment="Top" Width="100" Click="CreateUser_Click"/>
+
+        <Button x:Name="SaveUser" Content="3.SaveUser" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="100" Click="SaveUser_Click"/>
+
+    </Grid>
+</Window>
