@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Pet.Config
 {
@@ -21,9 +22,9 @@ namespace Pet.Config
 
         public static Player LoadPlayer(PlayerConfig config)
         {
-            var body = new Engin.Body();
-            var player = new Player(new System.Drawing.Point(300, 300), body) { Name = config.PlayerName };
+            var body = new SDK.Body();
             body.Content = new System.Windows.Controls.Grid() { Background = System.Windows.Media.Brushes.Red };
+            var player = new Player(new Point(300, 300)) { Name = config.PlayerName };
             return player;
         }
 

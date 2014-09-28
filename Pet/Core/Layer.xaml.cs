@@ -1,5 +1,4 @@
-﻿using Pet.Engin;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,51 +22,16 @@ namespace Pet.Core
     public partial class Layer : UserControl
     {
         public Dictionary<string, Player> playerDic = new Dictionary<string, Player>();
-        private Timer timer = new Timer();
-        private ArrayList renders = ArrayList.Synchronized(new ArrayList());
-        private Action<DateTime> updateMethod;
 
         public Layer()
         {
             InitializeComponent();
-            timer.Interval = 1000 / 60;
-            timer.Disposed += timer_Disposed;
-            timer.Elapsed += timer_Elapsed;
-            this.Loaded += Layer_Loaded;
-            this.Unloaded += Layer_Unloaded;
-            this.updateMethod = update;
         }
 
-        void timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            this.Dispatcher.BeginInvoke(updateMethod, e.SignalTime);
-        }
-        private void update(DateTime dateTime)
-        {
-            for (int i = 0; i < renders.Count; i++)
-            {
-                (renders[i] as IRender).Render(this, dateTime);
-            }
-            this.UpdateLayout();
-        }
 
-        void timer_Disposed(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         internal void initialize()
         {
-        }
-
-        void Layer_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            timer.Start();
-        }
-
-        void Layer_Unloaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            timer.Stop();
         }
 
 
@@ -75,19 +39,10 @@ namespace Pet.Core
         {
             if (!playerDic.ContainsKey(player.Name))
             {
-                RegisteRender(player);
+                SDK.Engin.Current.AddBody(player.Body);
                 playerDic.Add(player.Name, player);
             }
-            //throw new NotImplementedException();
         }
 
-        internal void RegisteRender(IRender render)
-        {
-            if (render != null)
-            {
-                renders.Add(render);
-                this.LayoutRoot.Children.Add(render.GetBody());
-            }
-        }
     }
 }

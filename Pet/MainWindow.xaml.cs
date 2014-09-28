@@ -1,4 +1,5 @@
 ﻿using Pet.Core;
+using Pet.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,32 +23,30 @@ namespace Pet
     {
 
         private Layer layer;
+        private Engin engin;
 
         public MainWindow()
         {
             InitializeComponent();
             initialize();
+            this.Loaded += MainWindow_Loaded;
+            this.Unloaded += MainWindow_Unloaded;
         }
 
         private void initialize()
         {
-            layer = new Layer();
-            layer.initialize();
-            LayoutRoot.Children.Add(layer);
-            var players = Config.PlayerConfig.LoadPlayers();
-            if (players.Count == 0)
-            {
-                MessageBox.Show("you can create your first player now");
-            }
-            else
-            {
-                foreach (var item in players)
-                {
-                    var player = Config.PlayerConfig.LoadPlayer(item);
-                    layer.AddPlayer(player);
-                }
-            }
+            engin = new Engin(new MainGame());
+            LayoutRoot.Children.Add(engin.DrawingSurface);
         }
 
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            engin.StartGame();
+        }
+
+        void MainWindow_Unloaded(object sender, RoutedEventArgs e)
+        {
+            engin.StopGame();
+        }
     }
 }

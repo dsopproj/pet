@@ -51,6 +51,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainGame.cs" />
+    <Compile Include="Scirpt\PlayerScript.cs" />
     <Compile Include="Utils\StringTable.cs" />
     <Page Include="Core\Layer.xaml">
       <SubType>Designer</SubType>
@@ -65,15 +67,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Config\PlayerConfig.cs" />
-    <Compile Include="Engin\IRender.cs" />
-    <Compile Include="Engin\Body.cs" />
-    <Compile Include="Engin\Brain.cs" />
-    <Compile Include="Engin\Engin.cs" />
     <Compile Include="Core\Layer.xaml.cs">
       <DependentUpon>Layer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Player.cs" />
-    <Compile Include="Engin\Spriter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
