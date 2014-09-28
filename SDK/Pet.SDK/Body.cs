@@ -7,12 +7,14 @@ using System.Windows.Controls;
 
 namespace Pet.SDK
 {
-    public class Body : UserControl
+    public class Body : UserControl, IDisposable
     {
         private Point _position;
+        public Action OnLoaded;
+        public Action OnUnLoaded;
+
 
         public Updater Updater { get; set; }
-
 
         public Point Position
         {
@@ -25,14 +27,34 @@ namespace Pet.SDK
             }
         }
 
+
         public Body()
         {
             Width = 64;
             Height = 128;
         }
 
+        public Body(string skinPath, string brainPath)
+            : this()
+        {
+
+        }
+
+        public Body(SkinResource skinResource, SkeletonResource brainResource)
+            : this()
+        {
+
+            onLoad();
+        }
+
         public void OnUpdated()
         {
+        }
+
+        private void onLoad()
+        {
+            if (OnLoaded != null)
+                OnLoaded();
         }
 
         internal void InternalUpdate()
@@ -42,5 +64,11 @@ namespace Pet.SDK
             OnUpdated();
         }
 
+
+        public void Dispose()
+        {
+            if (OnUnLoaded != null)
+                OnUnLoaded();
+        }
     }
 }

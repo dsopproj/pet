@@ -24,6 +24,9 @@ namespace Pet.Config
         public static Body LoadPlayer(PlayerConfig config)
         {
             //load zip, resource. then create player.
+            ContentManager cm = new ContentManager();
+            Resource resource =  cm.LoadResource(config.PlayerResource);
+
             var body = new SDK.Body();
             body.Updater = new DBBrain(body);
             body.Content = new System.Windows.Controls.Grid() { Background = System.Windows.Media.Brushes.Red };
