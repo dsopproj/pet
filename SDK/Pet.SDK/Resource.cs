@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 
 namespace Pet.SDK
 {
-    interface Render
+    public class Resource
     {
-        void Draw();
+        public Image  Image { get; set; }
     }
 }

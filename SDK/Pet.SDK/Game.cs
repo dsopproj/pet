@@ -8,7 +8,7 @@ namespace Pet.SDK
     public abstract class Game
     {
 
-        public Engin Engin { get; internal set; }
+        public Engine Engine { get; internal set; }
 
 
 

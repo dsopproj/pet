@@ -11,17 +11,35 @@ namespace Pet.SDK
     {
         private Point _position;
 
+        public Updater Updater { get; set; }
 
 
         public Point Position
         {
             get { return _position; }
-            set { _position = value; }
+            set
+            {
+                _position = value;
+                Canvas.SetLeft(this, Position.X);
+                Canvas.SetTop(this, Position.Y);
+            }
         }
 
         public Body()
         {
-           
+            Width = 64;
+            Height = 128;
+        }
+
+        public void OnUpdated()
+        {
+        }
+
+        internal void InternalUpdate()
+        {
+            if (Updater != null)
+                Updater.Update();
+            OnUpdated();
         }
 
     }

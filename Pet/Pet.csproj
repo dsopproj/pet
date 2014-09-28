@@ -52,12 +52,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="MainGame.cs" />
-    <Compile Include="Scirpt\PlayerScript.cs" />
+    <Compile Include="Brain\DBBrain.cs" />
     <Compile Include="Utils\StringTable.cs" />
-    <Page Include="Core\Layer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,10 +63,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Config\PlayerConfig.cs" />
-    <Compile Include="Core\Layer.xaml.cs">
-      <DependentUpon>Layer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Core\Player.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -106,9 +98,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Brain\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SDK\Pet.SDK\Pet.SDK.csproj">
       <Project>{e87f3037-1bc7-4ef0-88bc-b14ac63ff2f5}</Project>

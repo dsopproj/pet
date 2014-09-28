@@ -7,23 +7,20 @@ using System.Windows.Controls;
 
 namespace Pet.Scirpt
 {
-    internal class PlayerScript : SDK.Script
+    internal class DBBrain : SDK.Updater
     {
-        private Core.Player player;
         private SDK.Body body;
 
-        public PlayerScript(Core.Player player)
+        public DBBrain(SDK.Body body)
         {
-            this.player = player;
-            this.body = this.player.Body;
+            this.body = body;
         }
-        public override void Update()
+
+        public void Update()
         {
             if (body != null)
             {
                 body.Position = new Point(body.Position.X + 1, body.Position.Y);
-                Canvas.SetLeft(body, Convert.ToDouble(body.Position.X));
-                Canvas.SetTop(body, Convert.ToDouble(body.Position.Y));
             }
         }
     }

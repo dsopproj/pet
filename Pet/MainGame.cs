@@ -1,10 +1,11 @@
-﻿using Pet.Core;
-using Pet.SDK;
+﻿using Pet.SDK;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Pet
 {
@@ -15,9 +16,8 @@ namespace Pet
         {
             base.Initialize();
 
-            var layer = new Layer();
-            layer.initialize();
-            SDK.Engin.Current.DrawingSurface.Children.Add(layer);
+            var layer = new Canvas();//word layout.
+            SDK.Engine.Current.DrawingSurface.Children.Add(layer);
             var players = Config.PlayerConfig.LoadPlayers();
             if (players.Count == 0)
             {
@@ -28,7 +28,7 @@ namespace Pet
                 foreach (var item in players)
                 {
                     var player = Config.PlayerConfig.LoadPlayer(item);
-                    layer.AddPlayer(player);
+                    layer.Children.Add(player);
                 }
             }
         }

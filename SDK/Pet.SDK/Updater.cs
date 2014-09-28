@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Pet.SDK
 {
-    interface Updater
+    public interface Updater
     {
         void Update();
     }

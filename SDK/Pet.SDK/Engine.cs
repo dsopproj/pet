@@ -7,16 +7,15 @@ using System.Windows.Controls;
 
 namespace Pet.SDK
 {
-    public class Engin
+    public class Engine
     {
         private DrawingSurface drawingSurface;
         private Game game;
-        private List<Script> scripts = new List<Script>();
-        private static Engin _current;
+        private static Engine _current;
         private Timer timer = new Timer();
         private Action<DateTime> updateMethod;
 
-        public static Engin Current
+        public static Engine Current
         {
             get
             {
@@ -35,13 +34,13 @@ namespace Pet.SDK
             }
         }
 
-        public Engin(Game game)
+        public Engine(Game game)
         {
             if (_current != null)
                 throw new Exception("Engin has initialized!");
             _current = this;
             this.game = game;
-            this.game.Engin = this;
+            this.game.Engine = this;
             drawingSurface = new DrawingSurface();
             timer.Interval = 1000 / 60;
             timer.Disposed += timer_Disposed;
@@ -70,14 +69,6 @@ namespace Pet.SDK
             game.Stop();
         }
 
-        public void AddScript(Script script)
-        {
-            if (!scripts.Contains(script))
-            {
-                scripts.Add(script);
-            }
-        }
-
         public void AddBody(Body body)
         {
             drawingSurface.Children.Add(body);
@@ -85,15 +76,18 @@ namespace Pet.SDK
 
         private void update(DateTime dateTime)
         {
-            for (int i = 0; i < scripts.Count; i++)
-            {
-                var script = (scripts[i] as Script);
-                //script.Time = dateTime;
-                script.Update();
-            }
+            updateBody(drawingSurface.Children);
             drawingSurface.InvalidateVisual();
         }
 
+        private void updateBody(UIElementCollection value)
+        {
+            foreach (var item in value)
+                if (item is Body)
+                    (item as Body).InternalUpdate();
+                else if (item is Panel)
+                    updateBody((item as Panel).Children);
+        }
 
         private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {

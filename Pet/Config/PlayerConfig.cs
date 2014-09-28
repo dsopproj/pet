@@ -1,4 +1,5 @@
-﻿using Pet.Core;
+﻿using Pet.Scirpt;
+using Pet.SDK;
 using Pet.Utils;
 using System;
 using System.Collections.Generic;
@@ -20,18 +21,16 @@ namespace Pet.Config
         public string Manifest { get; set; }
 
 
-        public static Player LoadPlayer(PlayerConfig config)
+        public static Body LoadPlayer(PlayerConfig config)
         {
+            //load zip, resource. then create player.
             var body = new SDK.Body();
+            body.Updater = new DBBrain(body);
             body.Content = new System.Windows.Controls.Grid() { Background = System.Windows.Media.Brushes.Red };
-            var player = new Player(new Point(300, 300)) { Name = config.PlayerName };
-            return player;
+            return body;
         }
 
-        internal static void SavePlayer(Player player)
-        {
-            throw new NotImplementedException();
-        }
+
 
         internal static List<PlayerConfig> LoadPlayers()
         {

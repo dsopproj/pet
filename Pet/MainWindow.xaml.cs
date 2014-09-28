@@ -1,5 +1,4 @@
-﻿using Pet.Core;
-using Pet.SDK;
+﻿using Pet.SDK;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +21,7 @@ namespace Pet
     public partial class MainWindow : Window
     {
 
-        private Layer layer;
-        private Engin engin;
+        private Engine engin;
 
         public MainWindow()
         {
@@ -35,7 +33,7 @@ namespace Pet
 
         private void initialize()
         {
-            engin = new Engin(new MainGame());
+            engin = new Engine(new MainGame());
             LayoutRoot.Children.Add(engin.DrawingSurface);
         }
 
