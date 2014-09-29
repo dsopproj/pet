@@ -1,0 +1,702 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DragonScale.Portable.Zip</name>
+    </assembly>
+    <members>
+        <member name="T:DragonScale.Portable.Zip.Extensions">
+            <summary>
+            Extensions static class.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.Extensions.TestArchive(System.Byte[])">
+            <summary>
+            Tests the archive.
+            </summary>
+            <param name="data">The data.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.Extensions.TestArchive(System.Byte[],System.String)">
+            <summary>
+            Tests the archive.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="T:DragonScale.Portable.Zip.Exceptions.CryptographicException">
+            <summary>
+            CryptographicException class.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.Exceptions.CryptographicException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DragonScale.Portable.Zip.Exceptions.CryptographicException"/> class.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.Exceptions.CryptographicException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DragonScale.Portable.Zip.Exceptions.CryptographicException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.Exceptions.CryptographicException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DragonScale.Portable.Zip.Exceptions.CryptographicException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="T:DragonScale.Portable.Zip.Exceptions.ZipException">
+            <summary>
+            ZipException class.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.Exceptions.ZipException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DragonScale.Portable.Zip.Exceptions.ZipException"/> class.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.Exceptions.ZipException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DragonScale.Portable.Zip.Exceptions.ZipException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.Exceptions.ZipException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DragonScale.Portable.Zip.Exceptions.ZipException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="F:DragonScale.Portable.Zip.Compression.InflaterDynHeader.mode">
+            <summary>
+            The current decode mode
+            </summary>
+        </member>
+        <member name="T:DragonScale.Portable.Zip.CompressionMethod">
+            <summary>
+            CompressionMethod enum.
+            </summary>
+        </member>
+        <member name="F:DragonScale.Portable.Zip.CompressionMethod.Stored">
+            <summary>
+            Non compression method.
+            </summary>
+        </member>
+        <member name="F:DragonScale.Portable.Zip.CompressionMethod.Deflated">
+            <summary>
+            The deflated method.
+            </summary>
+        </member>
+        <member name="F:DragonScale.Portable.Zip.CompressionMethod.Deflate64">
+            <summary>
+            The deflate64 method.
+            </summary>
+        </member>
+        <member name="F:DragonScale.Portable.Zip.CompressionMethod.BZip2">
+            <summary>
+            The BZip2 method.
+            </summary>
+        </member>
+        <member name="F:DragonScale.Portable.Zip.CompressionMethod.WinZipAES">
+            <summary>
+            The WinZip AES method.
+            </summary>
+        </member>
+        <member name="T:DragonScale.Portable.Zip.ZipEntry">
+            <summary>
+            This class represents an entry in a zip archive. This can be a file
+            or a directory.
+            ZipFile and ZipInputStream will give you instances of this class as
+            information about the members in an archive.
+            ZipOutputStream uses an instance of this class when creating an entry in a Zip file.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipEntry.#ctor(System.String)">
+            <summary>
+              Creates a zip entry with the given name.
+            </summary>
+            <param name = "name">
+              The name for this entry. Can include directory components.
+              The convention for names is 'unix' style paths with relative names only.
+              There are with no device names and path elements are separated by '/' characters.
+            </param>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipEntry.ForceZip64">
+            <summary>
+            Force this entry to be recorded using Zip64 extensions.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipEntry.IsZip64Forced">
+            <summary>
+              Get a value indicating wether Zip64 extensions were forced.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value of true if Zip64 extensions have been forced on; false if not.</returns>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipEntry.IsCompressionMethodSupported">
+            <summary>
+              Test entry to see if data can be extracted.
+            </summary>
+            <returns>Returns true if data can be extracted for this entry; false otherwise.</returns>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipEntry.Clone">
+            <summary>
+            Clones this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipEntry.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.HasCrc">
+            <summary>
+            Get a value indicating wether the entry has a CRC value available.
+            </summary>
+            <value>
+              <c>true</c> if this instance has CRC; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.IsCrypted">
+            <summary>
+            Get/Set flag indicating if entry is encrypted.
+            A simple helper routine to aid interpretation of <see cref="P:DragonScale.Portable.Zip.ZipEntry.Flags">flags</see>
+            </summary>
+            <value>
+            <c>true</c> if this instance is crypted; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.IsUnicodeText">
+            <summary>
+            Get / set a flag indicating wether entry name and comment text are
+            encoded in <a href="http://www.unicode.org">unicode UTF8</a>.
+            </summary>
+            <value>
+            <c>true</c> if this instance is unicode text; otherwise, <c>false</c>.
+            </value>
+            <remarks>
+            This is an assistant that interprets the <see cref="P:DragonScale.Portable.Zip.ZipEntry.Flags">flags</see> property.
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.Flags">
+            <summary>
+              Get/Set general purpose bit flag for entry
+            </summary>
+            <remarks>
+              General purpose bit flag<br/>
+              <br/>
+              Bit 0: If set, indicates the file is encrypted<br/>
+              Bit 1-2 Only used for compression type 6 Imploding, and 8, 9 deflating<br/>
+              Imploding:<br/>
+              Bit 1 if set indicates an 8K sliding dictionary was used.  If clear a 4k dictionary was used<br/>
+              Bit 2 if set indicates 3 Shannon-Fanno trees were used to encode the sliding dictionary, 2 otherwise<br/>
+              <br/>
+              Deflating:<br/>
+              Bit 2    Bit 1<br/>
+              0        0       Normal compression was used<br/>
+              0        1       Maximum compression was used<br/>
+              1        0       Fast compression was used<br/>
+              1        1       Super fast compression was used<br/>
+              <br/>
+              Bit 3: If set, the fields crc-32, compressed size
+              and uncompressed size are were not able to be written during zip file creation
+              The correct values are held in a data descriptor immediately following the compressed data. <br/>
+              Bit 4: Reserved for use by PKZIP for enhanced deflating<br/>
+              Bit 5: If set indicates the file contains compressed patch data<br/>
+              Bit 6: If set indicates strong encryption was used.<br/>
+              Bit 7-10: Unused or reserved<br/>
+              Bit 11: If set the name and comments for this entry are in <a href="http://www.unicode.org">unicode</a>.<br/>
+              Bit 12-15: Unused or reserved<br/>
+            </remarks>
+            <seealso cref="P:DragonScale.Portable.Zip.ZipEntry.IsUnicodeText"></seealso>
+            <seealso cref="P:DragonScale.Portable.Zip.ZipEntry.IsCrypted"></seealso>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.ZipFileIndex">
+            <summary>
+            Get/Set index of this entry in Zip file
+            </summary>
+            <value>
+            The index of the zip file.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.Offset">
+            <summary>
+            Gets or sets the offset for use in central header.
+            </summary>
+            <value>
+            The offset.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.ExternalFileAttributes">
+            <summary>
+            Gets or sets the external file attributes.
+            </summary>
+            <value>
+            The external file attributes.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.VersionMadeBy">
+            <summary>
+            Get the version made by for this entry or zero if unknown.
+            The value / 10 indicates the major version number, and
+            the value mod 10 is the minor version number
+            </summary>
+            <value>
+            The version made by.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.IsDOSEntry">
+            <summary>
+            Get a value indicating this entry is for a DOS/Windows system.
+            </summary>
+            <value>
+            <c>true</c> if this instance is DOS entry; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.HostSystem">
+            <summary>
+              Gets the compatability information for the <see cref="P:DragonScale.Portable.Zip.ZipEntry.ExternalFileAttributes">external file attribute</see>
+              If the external file attributes are compatible with MS-DOS and can be read
+              by PKZIP for DOS version 2.04g then this value will be zero.  Otherwise the value
+              will be non-zero and identify the host system on which the attributes are compatible.
+            </summary>
+            <remarks>
+              The values for this as defined in the Zip File format and by others are shown below.  The values are somewhat
+              misleading in some cases as they are not all used as shown.  You should consult the relevant documentation
+              to obtain up to date and correct information.  The modified appnote by the infozip group is
+              particularly helpful as it documents a lot of peculiarities.  The document is however a little dated.
+              <list type="table">
+                <item>0 - MS-DOS and OS/2 (FAT / VFAT / FAT32 file systems)</item>
+                <item>1 - Amiga</item>
+                <item>2 - OpenVMS</item>
+                <item>3 - Unix</item>
+                <item>4 - VM/CMS</item>
+                <item>5 - Atari ST</item>
+                <item>6 - OS/2 HPFS</item>
+                <item>7 - Macintosh</item>
+                <item>8 - Z-System</item>
+                <item>9 - CP/M</item>
+                <item>10 - Windows NTFS</item>
+                <item>11 - MVS (OS/390 - Z/OS)</item>
+                <item>12 - VSE</item>
+                <item>13 - Acorn Risc</item>
+                <item>14 - VFAT</item>
+                <item>15 - Alternate MVS</item>
+                <item>16 - BeOS</item>
+                <item>17 - Tandem</item>
+                <item>18 - OS/400</item>
+                <item>19 - OS/X (Darwin)</item>
+                <item>99 - WinZip AES</item>
+                <item>remainder - unused</item>
+              </list>
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.Version">
+            <summary>
+              Get minimum Zip feature version required to extract this entry
+            </summary>
+            <remarks>
+              Minimum features are defined as:<br/>
+              1.0 - Default value<br/>
+              1.1 - File is a volume label<br/>
+              2.0 - File is a folder/directory<br/>
+              2.0 - File is compressed using Deflate compression<br/>
+              2.0 - File is encrypted using traditional encryption<br/>
+              2.1 - File is compressed using Deflate64<br/>
+              2.5 - File is compressed using PKWARE DCL Implode<br/>
+              2.7 - File is a patch data set<br/>
+              4.5 - File uses Zip64 format extensions<br/>
+              4.6 - File is compressed using BZIP2 compression<br/>
+              5.0 - File is encrypted using DES<br/>
+              5.0 - File is encrypted using 3DES<br/>
+              5.0 - File is encrypted using original RC2 encryption<br/>
+              5.0 - File is encrypted using RC4 encryption<br/>
+              5.1 - File is encrypted using AES encryption<br/>
+              5.1 - File is encrypted using corrected RC2 encryption<br/>
+              5.1 - File is encrypted using corrected RC2-64 encryption<br/>
+              6.1 - File is encrypted using non-OAEP key wrapping<br/>
+              6.2 - Central directory encryption (not confirmed yet)<br/>
+              6.3 - File is compressed using LZMA<br/>
+              6.3 - File is compressed using PPMD+<br/>
+              6.3 - File is encrypted using Blowfish<br/>
+              6.3 - File is encrypted using Twofish<br/>
+            </remarks>
+            <seealso cref="P:DragonScale.Portable.Zip.ZipEntry.CanDecompress"></seealso>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.CanDecompress">
+            <summary>
+              Get a value indicating whether this entry can be decompressed by the library.
+            </summary>
+            <remarks>
+              This is based on the <see cref="P:DragonScale.Portable.Zip.ZipEntry.Version"></see> and 
+              wether the <see cref="M:DragonScale.Portable.Zip.ZipEntry.IsCompressionMethodSupported">compression method</see> is supported.
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.LocalHeaderRequiresZip64">
+            <summary>
+              Gets a value indicating if the entry requires Zip64 extensions 
+              to store the full entry values.
+            </summary>
+            <value>A <see cref="T:System.Boolean"/> value of true if a local header requires Zip64 extensions; false if not.</value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.CentralHeaderRequiresZip64">
+            <summary>
+            Get a value indicating wether the central directory entry requires Zip64 extensions to be stored.
+            </summary>
+            <value>
+            <c>true</c> if [central header requires zip64]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.DosTime">
+            <summary>
+              Get/Set DosTime value.
+            </summary>
+            <remarks>
+              The MS-DOS date format can only represent dates between 1/1/1980 and 12/31/2107.
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.DateTime">
+            <summary>
+              Gets/Sets the time of last modification of the entry.
+            </summary>
+            <remarks>
+              The <see cref="P:DragonScale.Portable.Zip.ZipEntry.DosTime"></see> property is updated to match this as far as possible.
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.Name">
+             <summary>
+              Returns the entry name.
+            </summary>
+            <remarks>
+              The unix naming convention is followed.
+              Path components in the entry should always separated by forward slashes ('/').
+              Dos device names like C: should also be removed.
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.Size">
+            <summary>
+              Gets/Sets the size of the uncompressed data.
+            </summary>
+            <returns>
+              The size or -1 if unknown.
+            </returns>
+            <remarks>
+              Setting the size before adding an entry to an archive can help
+              avoid compatability problems with some archivers which dont understand Zip64 extensions.
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.CompressedSize">
+            <summary>
+              Gets/Sets the size of the compressed data.
+            </summary>
+            <returns>
+              The compressed entry size or -1 if unknown.
+            </returns>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.Crc">
+            <summary>
+              Gets/Sets the crc of the uncompressed data.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+              Crc is not in the range 0..0xffffffffL
+            </exception>
+            <returns>
+              The crc value or -1 if unknown.
+            </returns>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.ExtraData">
+            <summary>
+              Gets/Sets the extra data.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+              Extra data is longer than 64KB (0xffff) bytes.
+            </exception>
+            <returns>
+              Extra data or null if not set.
+            </returns>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.Comment">
+            <summary>
+              Gets/Sets the entry comment.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+              If comment is longer than 0xffff.
+            </exception>
+            <returns>
+              The comment or null if not set.
+            </returns>
+            <remarks>
+              A comment is only available for entries when read via the <see cref="T:DragonScale.Portable.Zip.ZipFile"/> class.
+              The <see cref="T:DragonScale.Portable.Zip.ZipInputStream"/> class doesnt have the comment data available.
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.IsDirectory">
+            <summary>
+              Gets a value indicating if the entry is a directory.
+            </summary>
+            <remarks>
+              A directory is determined by an entry name with a trailing slash '/'.
+              The external file attributes can also indicate an entry is for a directory.
+              Currently only dos/windows attributes are tested in this manner.
+              The trailing slash convention should always be followed.
+            </remarks>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipEntry.IsFile">
+            <summary>
+              Get a value of true if the entry appears to be a file; false otherwise
+            </summary>
+            <remarks>
+              This only takes account of DOS/Windows attributes.  Other operating systems are ignored.
+              For linux and others the result may be incorrect.
+            </remarks>
+        </member>
+        <member name="T:DragonScale.Portable.Zip.ZipFile">
+            <summary>
+            ZipFile class.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DragonScale.Portable.Zip.ZipFile"/> class.
+            </summary>
+            <param name="stream">The stream.</param>
+            <exception cref="T:System.ArgumentNullException">stream</exception>
+            <exception cref="T:System.ArgumentException">Stream is not seekable.</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:DragonScale.Portable.Zip.ZipFile"/> class.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.Close">
+            <summary>
+            Closes this instance.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.Create">
+            <summary>
+            Creates a new zip file.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">ZipFile</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.FindEntry(System.String,System.Boolean)">
+            <summary>
+            Finds the entry.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="ignoreCase">if set to <c>true</c> [ignore case].</param>
+            <returns></returns>
+            <exception cref="T:System.ObjectDisposedException">ZipFile</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.GetEntry(System.String)">
+            <summary>
+            Gets the entry.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+            <exception cref="T:System.ObjectDisposedException">ZipFile</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.GetInputStream(DragonScale.Portable.Zip.ZipEntry)">
+            <summary>
+            Gets the input stream.
+            </summary>
+            <param name="entry">The entry.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">entry</exception>
+            <exception cref="T:System.ObjectDisposedException">ZipFile</exception>
+            <exception cref="T:DragonScale.Portable.Zip.Exceptions.ZipException">Entry cannot be found</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.GetInputStream(System.Int64)">
+            <summary>
+            Gets the input stream.
+            </summary>
+            <param name="entryIndex">Index of the entry.</param>
+            <returns></returns>
+            <exception cref="T:System.ObjectDisposedException">ZipFile</exception>
+            <exception cref="T:DragonScale.Portable.Zip.Exceptions.ZipException">Unable to decrypt this entry</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.TestArchive(System.Boolean)">
+            <summary>
+            Tests the archive.
+            </summary>
+            <param name="testData">if set to <c>true</c> [test all data] otherwise only the header will be tested.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.Add(System.String,System.String,System.IO.Stream,DragonScale.Portable.Zip.CompressionMethod,System.Boolean)">
+            <summary>
+            Adds the specified file.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="entryName">Name of the entry.</param>
+            <param name="stream">The stream.</param>
+            <param name="compressionMethod">The compression method.</param>
+            <param name="useUnicodeText">if set to <c>true</c> [use unicode text].</param>
+            <exception cref="T:System.ArgumentNullException">fileName</exception>
+            <exception cref="T:System.ArgumentNullException">entryName</exception>
+            <exception cref="T:System.ArgumentNullException">stream</exception>
+            <exception cref="T:System.ObjectDisposedException">ZipFile</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">compressionMethod</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.Add(System.String,System.IO.Stream)">
+            <summary>
+            Adds the specified file.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="stream">The stream.</param>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.Add(System.String,System.String,System.IO.Stream)">
+            <summary>
+            Adds the specified file.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="entryName">Name of the entry.</param>
+            <param name="stream">The stream.</param>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.AddDirectory(System.String)">
+            <summary>
+            Adds the directory.
+            </summary>
+            <param name="directoryName">Name of the directory.</param>
+            <exception cref="T:System.ArgumentNullException">directoryName</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.Delete(System.String)">
+            <summary>
+            Deletes entry by the specified file name.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">fileName</exception>
+            <exception cref="T:DragonScale.Portable.Zip.Exceptions.ZipException">Cannot find entry to delete</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.Delete(DragonScale.Portable.Zip.ZipEntry)">
+            <summary>
+            Deletes the specified entry.
+            </summary>
+            <param name="entry">The entry.</param>
+            <exception cref="T:System.ArgumentNullException">entry</exception>
+            <exception cref="T:DragonScale.Portable.Zip.Exceptions.ZipException">Cannot find entry to delete</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.AbortUpdate">
+            <summary>
+            Aborts the update.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.BeginUpdate">
+            <summary>
+            Begins the update.
+            </summary>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.EndUpdate">
+            <summary>
+            Ends the update.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">ZipFile</exception>
+        </member>
+        <member name="M:DragonScale.Portable.Zip.ZipFile.SetComment(System.String)">
+            <summary>
+            Sets the comment.
+            </summary>
+            <param name="comment">The comment.</param>
+            <exception cref="T:System.ObjectDisposedException">ZipFile</exception>
+            <exception cref="T:DragonScale.Portable.Zip.Exceptions.ZipException">Comment length exceeds maximum - 65535</exception>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.Password">
+            <summary>
+            Sets the password.
+            </summary>
+            <value>
+            The password.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.BaseStream">
+            <summary>
+            Gets the base stream.
+            </summary>
+            <value>
+            The base stream.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.IsStreamOwner">
+            <summary>
+            Gets or sets a value indicating whether this instance is stream owner.
+            </summary>
+            <value>
+            <c>true</c> if this instance is stream owner; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.IsEmbeddedArchive">
+            <summary>
+            Gets a value indicating whether this instance is embedded archive.
+            </summary>
+            <value>
+            <c>true</c> if this instance is embedded archive; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.IsNewArchive">
+            <summary>
+            Gets a value indicating whether this instance is new archive.
+            </summary>
+            <value>
+            <c>true</c> if this instance is new archive; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.Comment">
+            <summary>
+            Gets the zip file comment.
+            </summary>
+            <value>
+            The zip file comment.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.Size">
+            <summary>
+            Gets the size.
+            </summary>
+            <value>
+            The size.
+            </value>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:DragonScale.Portable.Zip.ZipEntry"/> at the specified index.
+            </summary>
+            <value>
+            The <see cref="T:DragonScale.Portable.Zip.ZipEntry"/>.
+            </value>
+            <param name="index">The index.</param>
+            <returns></returns>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.BufferSize">
+            <summary>
+            Gets or sets the size of the buffer.
+            </summary>
+            <value>
+            The size of the buffer.
+            </value>
+            <exception cref="T:System.ArgumentOutOfRangeException">value;cannot be below 1024</exception>
+        </member>
+        <member name="P:DragonScale.Portable.Zip.ZipFile.IsUpdating">
+            <summary>
+            Gets a value indicating whether this instance is updating.
+            </summary>
+            <value>
+            <c>true</c> if this instance is updating; otherwise, <c>false</c>.
+            </value>
+        </member>
+    </members>
+</doc>

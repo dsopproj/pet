@@ -23,5 +23,18 @@ namespace Pet.Editor
         {
             InitializeComponent();
         }
+
+        private void btnCreatePlayer_Click(object sender, RoutedEventArgs e)
+        {
+            CreatePlayer page = new CreatePlayer();
+            addChild(page);
+
+        }
+
+        private void addChild(CreatePlayer page)
+        {
+            RootGrid.Children.Clear();
+            RootGrid.Children.Add(page);
+        }
     }
 }

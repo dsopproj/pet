@@ -21,7 +21,7 @@ namespace Pet
     public partial class MainWindow : Window
     {
 
-        private Engine engin;
+        private SDK.Engine engin;
 
         public MainWindow()
         {

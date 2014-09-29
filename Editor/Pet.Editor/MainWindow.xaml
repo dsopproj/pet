@@ -3,6 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="449*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Button x:Name="btnCreatePlayer" Content="CreatePlayer" Width="100" Height="30" Click="btnCreatePlayer_Click"/>
+        </StackPanel>
+        <Grid x:Name="RootGrid">
+            
+        </Grid>
     </Grid>
 </Window>

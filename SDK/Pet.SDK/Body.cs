@@ -7,9 +7,12 @@ using System.Windows.Controls;
 
 namespace Pet.SDK
 {
-    public class Body : UserControl, IDisposable
+    public class Body : UserControl, IDisposable, IBody
     {
         private Point _position;
+        private Dictionary<string, Animation> animationDict = new Dictionary<string, Animation>();
+        private Animation currentAnimation;
+
         public Action OnLoaded;
         public Action OnUnLoaded;
 
@@ -44,18 +47,37 @@ namespace Pet.SDK
             : this()
         {
 
-            onLoad();
+            InternalOnLoad();
         }
 
         public void OnUpdated()
         {
         }
 
-        private void onLoad()
+        public void Dispose()
+        {
+            if (OnUnLoaded != null)
+                OnUnLoaded();
+        }
+
+        public void Play(string key)
+        {
+            if (animationDict.ContainsKey(key))
+            {
+                currentAnimation = animationDict[key];
+                currentAnimation.Play();
+            }
+        }
+
+
+
+
+        private void InternalOnLoad()
         {
             if (OnLoaded != null)
                 OnLoaded();
         }
+
 
         internal void InternalUpdate()
         {
@@ -65,10 +87,12 @@ namespace Pet.SDK
         }
 
 
-        public void Dispose()
+        public bool PlayFinished()
         {
-            if (OnUnLoaded != null)
-                OnUnLoaded();
+            if (currentAnimation != null)
+                return currentAnimation.PlayFinished();
+            else
+                return true;
         }
     }
 }

@@ -13,15 +13,23 @@ namespace Pet.Scirpt
 
         public DBBrain(SDK.Body body)
         {
+            if (body == null)
+                throw new ArgumentNullException();
             this.body = body;
         }
 
         public void Update()
         {
-            if (body != null)
+            body.Position = new Point(body.Position.X + 1, body.Position.Y);
+            if (body.PlayFinished())
             {
-                body.Position = new Point(body.Position.X + 1, body.Position.Y);
+                body.Play(BrainActionEnum.Dance.ToString());
             }
         }
+    }
+
+    internal enum BrainActionEnum
+    {
+        Stand, Walk, Dance, Speak
     }
 }
