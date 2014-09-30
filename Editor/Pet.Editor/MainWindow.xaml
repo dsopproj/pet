@@ -10,8 +10,8 @@
         <StackPanel Grid.Column="0">
             <Button x:Name="btnCreatePlayer" Content="CreatePlayer" Width="100" Height="30" Click="btnCreatePlayer_Click"/>
         </StackPanel>
-        <Grid x:Name="RootGrid">
-            
+        <Grid Grid.Column="1" x:Name="RootGrid">
+
         </Grid>
     </Grid>
 </Window>

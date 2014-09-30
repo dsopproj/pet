@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -12,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Pet.Editor
 {
@@ -28,18 +28,37 @@ namespace Pet.Editor
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog ofd = new OpenFileDialog();
-            System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
-            
-           fbd.ShowDialog();
-           if (fbd.SelectedPath != string.Empty)
-           {
-               ZipEntry zip = new ZipEntry("GreyGuy");
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "*.scml|*.scml";
+            if (ofd.ShowDialog().HasValue && ofd.ShowDialog().Value)
+            {
+                var folder = ofd.FileName.Substring(0, ofd.FileName.LastIndexOf(Path.DirectorySeparatorChar));
+                var zipFilePath = folder.Substring(0, folder.LastIndexOf(Path.DirectorySeparatorChar)) + ofd.SafeFileName + ".zip";
+                zipSpriter(folder, zipFilePath);
+            }
+        }
 
-               fbd.SelectedPath;  
 
-           }
-            
+        private void zipSpriter(string folder, string zipFilePath)
+        {
+            var zipFile = ZipFile.Create();
+            zipFile.AddDirectory(folder);
+            var stream = zipFile.BaseStream;
+            if (File.Exists(zipFilePath))
+            {
+                File.Delete(zipFilePath);
+            }
+
+            var file = File.Create(zipFilePath);
+            byte[] bytes = new byte[2048];
+            int i = 0;
+            while ((i = stream.Read(bytes, 0, bytes.Length)) != -1)
+            {
+                file.Write(bytes, 0, i);
+            }
+            file.Flush();
+            file.Close();
+            MessageBox.Show("OK");
         }
     }
 }
