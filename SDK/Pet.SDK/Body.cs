@@ -43,7 +43,7 @@ namespace Pet.SDK
         {
         }
 
-        public Body(SkinResource skinResource, SkeletonResource brainResource)
+        public Body(SkinResource skinResource)
             : this()
         {
             InternalOnLoad();

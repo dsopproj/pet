@@ -59,7 +59,7 @@ namespace Pet.SDK
                 parentInfo=characterInfo;
             }
 
-            TimelineKey currentKey=keyFromRef(currentRef,newTime);
+            BrashMonkey.Spriter.Models.TimelineKey currentKey=keyFromRef(currentRef,newTime);
             currentKey.info=currentKey.info.unmapFromParent(parentInfo);
             objectKeys.Add(currentKey);
         }
@@ -89,7 +89,7 @@ namespace Pet.SDK
             return mAnimation.MainlineKeys[currentMainKey];
         }
 
-      
+
     }
 
 
@@ -114,10 +114,10 @@ namespace Pet.SDK
 
             if (x != 0 || y != 0)
             {
-                preMultX = x * parentInfo.xScale;
-                preMultY = y * parentInfo.yScale;
-                float s = sin(toRadians(parentInfo.angle));
-                float c = cos(toRadians(parentInfo.angle));
+                var preMultX = x * parentInfo.scaleX;
+                var preMultY = y * parentInfo.scaleY;
+                float s = sin(Math.toRadians(parentInfo.angle));
+                float c = cos(Math.toRadians(parentInfo.angle));
                 unmappedObj.x = (preMultX * c) - (preMultY * s);
                 unmappedObj.y = (preMultX * s) + (preMultY * c);
                 unmappedObj.x += parentInfo.x;
