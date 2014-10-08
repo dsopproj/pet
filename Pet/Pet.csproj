@@ -98,11 +98,17 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SDK\Pet.SDK\Pet.SDK.csproj">
       <Project>{e87f3037-1bc7-4ef0-88bc-b14ac63ff2f5}</Project>
       <Name>Pet.SDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\terinfire-spriter-for-c-889d65a488ff\hiddenpla.net.Spriter.csproj">
+      <Project>{e0269c21-5764-4983-b538-bbac40498981}</Project>
+      <Name>hiddenpla.net.Spriter</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

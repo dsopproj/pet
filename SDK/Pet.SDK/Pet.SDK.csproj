@@ -42,22 +42,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="AnimationEx.cs" />
     <Compile Include="Body.cs" />
     <Compile Include="GameTime.cs" />
+    <Compile Include="IAnimation.cs" />
     <Compile Include="IBody.cs" />
     <Compile Include="KeyFrame.cs" />
-    <Compile Include="SkeletonResource.cs" />
     <Compile Include="ContentManager.cs" />
     <Compile Include="DrawingSurface.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FrameSkinResource.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource.cs" />
+    <Compile Include="IResource.cs" />
     <Compile Include="SkinResource.cs" />
+    <Compile Include="SpriterResource.cs" />
     <Compile Include="SpriteSkinResource.cs" />
     <Compile Include="Updater.cs" />
     <Compile Include="ZipReader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\terinfire-spriter-for-c-889d65a488ff\hiddenpla.net.Spriter.csproj">
+      <Project>{e0269c21-5764-4983-b538-bbac40498981}</Project>
+      <Name>hiddenpla.net.Spriter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

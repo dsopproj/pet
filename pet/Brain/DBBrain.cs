@@ -9,21 +9,23 @@ namespace Pet.Scirpt
 {
     internal class DBBrain : SDK.Updater
     {
-        private SDK.Body body;
+        private SDK.Body player;
 
         public DBBrain(SDK.Body body)
         {
             if (body == null)
                 throw new ArgumentNullException();
-            this.body = body;
+            this.player = body;
         }
 
         public void Update()
         {
-            body.Position = new Point(body.Position.X + 1, body.Position.Y);
-            if (body.PlayFinished())
+            //player.Position = new Point(player.Position.X + 1, player.Position.Y);
+            var time = SDK.Game.Current.GameTime;
+            //if(time > 5*60*1000) do dance.
+            if (player.PlayFinished())
             {
-                body.Play(BrainActionEnum.Dance.ToString());
+                player.Play(BrainActionEnum.Stand.ToString());
             }
         }
     }

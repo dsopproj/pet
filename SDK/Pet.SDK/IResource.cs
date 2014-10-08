@@ -6,7 +6,14 @@ using System.Windows.Controls;
 
 namespace Pet.SDK
 {
-    public interface Resource
+    public interface IResource : IDisposable
     {
+        bool IsDisposed();
     }
+
+    public enum ResourceType
+    {
+        Image, Mp3, Spriter, Zip
+    }
+
 }

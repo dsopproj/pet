@@ -1,4 +1,5 @@
-﻿using Pet.Scirpt;
+﻿using BrashMonkey.Spriter.Models;
+using Pet.Scirpt;
 using Pet.SDK;
 using Pet.Utils;
 using System;
@@ -24,13 +25,16 @@ namespace Pet.Config
         public static Body LoadPlayer(PlayerConfig config)
         {
             //load zip, resource. then create player.
-            //ContentManager cm = new ContentManager();
-            //Resource resource =  cm.LoadResource(config.PlayerResource);
-            var body = new SDK.Body();
+            ContentManager cm = Engine.Current.ContentManager;
+            SpriterResource resource = (SpriterResource)cm.LoadResource(config.PlayerResource, ResourceType.Spriter);
+
+            var body = new SDK.Body(resource);
             body.Updater = new DBBrain(body);
-            body.Content = new System.Windows.Controls.Grid() { Background = System.Windows.Media.Brushes.Red };
+            body.Children.Add(new System.Windows.Controls.Grid() { Background = System.Windows.Media.Brushes.Red });
+
             return body;
         }
+
 
 
 

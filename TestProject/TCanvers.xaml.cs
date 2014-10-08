@@ -15,14 +15,21 @@ using System.Windows.Shapes;
 namespace TestProject
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// TCanvers.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TCanvers : Canvas
     {
-        public MainWindow()
+        public TCanvers()
         {
             InitializeComponent();
-            mainGrid.Children.Add(new TCanvers());
+
+            TransformGroup tg = new TransformGroup();
+            RotateTransform rt = new RotateTransform();
+            rt.Angle = 60;
+            tg.Children.Add(rt);
+
+            btnTest.RenderTransform = tg;
+
         }
     }
 }

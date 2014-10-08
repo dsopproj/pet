@@ -7,12 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
 
-namespace Pet.Editor
+namespace Pet.SDK
 {
-    public class SpriterZipParser
+    public class SpriterResource : IResource
     {
 
+        private bool isDisposed = false;
+        private ScmlObject scmlObject;
         public Dictionary<string, CroppedBitmap> imgDict = new Dictionary<string, CroppedBitmap>();
+
+        public SpriterResource(System.IO.FileStream fs)
+        {
+            scmlObject = parser(fs);
+
+        }
 
 
         internal ScmlObject parser(System.IO.Stream stream)
@@ -40,6 +48,34 @@ namespace Pet.Editor
                 }
             }
             return scmlObject;
+        }
+
+        public void Dispose()
+        {
+            if (!isDisposed)
+            {
+                isDisposed = true;
+            }
+        }
+
+
+        public bool IsDisposed()
+        {
+            return isDisposed;
+        }
+
+        public List<IAnimation> GetAnimations()
+        {
+            List<IAnimation> list = new List<IAnimation>();
+            foreach (var entity in scmlObject.Entities)
+            {
+                foreach (var animationItem in entity.Animations)
+                {
+                    IAnimation animation = new Animation(entity, animationItem, scmlObject.Folders);
+                    list.Add(animation);
+                }
+            }
+            return list;
         }
     }
 }

@@ -7,6 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Background="AntiqueWhite">
         <StackPanel>
+            <Button x:Name="btnZipSpriter" Content="ZipSpriter" Width="100" Height="30" Click="btnZipSpriter_Click" />
             <Button x:Name="btnCreate" Content="select spriter" Width="100" Height="30" Click="btnCreate_Click" />
             <Button x:Name="btnLoadZip" Content="load spriter zip" Width="100" Height="30" Click="btnLoadZip_Click" />
         </StackPanel>

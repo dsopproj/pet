@@ -7,6 +7,6 @@ namespace Pet.SDK
 {
     interface IBody
     {
-
+        
     }
 }

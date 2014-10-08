@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.IO.Packaging;
-using BrashMonkey.Spriter;
 
 namespace Pet.Editor
 {
@@ -35,22 +34,34 @@ namespace Pet.Editor
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
 
-
         }
+
 
         private void btnLoadZip_Click(object sender, RoutedEventArgs e)
         {
 
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
-            ofd.Filter = "*.zip|*.zip";
+            ofd.Filter = "(*.zip,*.rar)|*.zip;*.rar";
             if (ofd.ShowDialog().Value)
             {
-                SpriterZipParser sp = new SpriterZipParser(); 
-                bool value = sp.parser(ofd.OpenFile());
-                MessageBox.Show("ret:" + value);
-
+                try
+                {
+                    SpriterZipParser sp = new SpriterZipParser();
+                    var scmlObject = sp.parser(ofd.OpenFile());
+                    MessageBox.Show("ret:" + scmlObject);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
+
+        private void btnZipSpriter_Click(object sender, RoutedEventArgs e)
+        {
+            zipSpriter();
+        }
+
 
         //public
 
@@ -206,6 +217,7 @@ namespace Pet.Editor
                 // Add within the collection and use it to generate report.
             }
         }
+
 
     }
 

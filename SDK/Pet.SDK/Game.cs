@@ -7,6 +7,8 @@ namespace Pet.SDK
 {
     public abstract class Game
     {
+        public static Game Current { get; protected set; }
+
 
         public Engine Engine { get; internal set; }
 
@@ -14,6 +16,8 @@ namespace Pet.SDK
 
         public virtual void Initialize()
         {
+            Current = this;
+
         }
 
         public virtual void Start()
@@ -28,6 +32,11 @@ namespace Pet.SDK
         public virtual void Stop()
         {
             Console.WriteLine("game stop.");
+        }
+
+        public GameTime GameTime
+        {
+            get { return new GameTime(); }
         }
 
     }

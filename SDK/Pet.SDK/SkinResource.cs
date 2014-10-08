@@ -5,7 +5,16 @@ using System.Text;
 
 namespace Pet.SDK
 {
-    public abstract class SkinResource : Resource
+    public abstract class SkinResource : IResource
     {
+        public bool IsDisposed()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,6 +14,9 @@ namespace Pet.SDK
         private static Engine _current;
         private Timer timer = new Timer();
         private Action<DateTime> updateMethod;
+        private ContentManager cm = new ContentManager();
+
+        public ContentManager ContentManager { get { return cm; } }
 
         public static Engine Current
         {
@@ -48,6 +51,7 @@ namespace Pet.SDK
 
             game.Initialize();
             updateMethod = update;
+
 
         }
 
