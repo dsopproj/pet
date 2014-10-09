@@ -28,6 +28,7 @@ namespace Pet
                 foreach (var item in players)
                 {
                     var player = Config.PlayerConfig.LoadPlayer(item);
+                    player.Position = new System.Windows.Point(200, 200);
                     layer.Children.Add(player);
                 }
             }

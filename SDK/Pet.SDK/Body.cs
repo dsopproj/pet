@@ -72,7 +72,7 @@ namespace Pet.SDK
             if (animationDict.ContainsKey(key))
             {
                 currentAnimation = animationDict[key];
-                currentAnimation.Play(this);
+                currentAnimation.Play(this, resource.ScmlReference);
             }
         }
 

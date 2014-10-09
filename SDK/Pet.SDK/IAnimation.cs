@@ -8,7 +8,7 @@ namespace Pet.SDK
     public interface IAnimation : IDisposable
     {
 
-        void Play(Body body);
+        void Play(Body body, BrashMonkey.Spriter.Models.ScmlReference scmlReference);
 
         void Stop();
 

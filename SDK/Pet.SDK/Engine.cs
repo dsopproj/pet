@@ -45,7 +45,7 @@ namespace Pet.SDK
             this.game = game;
             this.game.Engine = this;
             drawingSurface = new DrawingSurface();
-            timer.Interval = 1000 / 60;
+            timer.Interval = 1000 / 120;
             timer.Disposed += timer_Disposed;
             timer.Elapsed += timer_Elapsed;
 

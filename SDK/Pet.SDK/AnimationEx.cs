@@ -43,8 +43,8 @@ namespace Pet.SDK
             {
                 newTime = Math.Min(newTime, mAnimation.Length);
             }
-
-            updateCharacter(mainlineKeyFromTime(currentTime), currentTime);
+            var mainKey = mainlineKeyFromTime((int)currentTime);
+            updateCharacter(mainKey, (int)currentTime);
         }
 
         void updateCharacter(BrashMonkey.Spriter.Models.MainlineKey mainKey, int newTime)
@@ -62,7 +62,7 @@ namespace Pet.SDK
             {
                 parentInfo=characterInfo();
             }
-            TimelineKey currentKey=keyFromRef(currentRef,newTime);
+            BrashMonkey.Spriter.Models.TimelineKey currentKey=keyFromRef(currentRef,newTime);
             currentKey.info=currentKey.info.unmapFromParent(parentInfo);
             transformBoneKeys.push(currentKey);
         }
@@ -147,8 +147,6 @@ namespace Pet.SDK
 
             return keyA.interpolate(keyB, keyBTime, currentTime);
         }
-
-
     }
 
 

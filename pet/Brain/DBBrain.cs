@@ -10,6 +10,7 @@ namespace Pet.Scirpt
     internal class DBBrain : SDK.Updater
     {
         private SDK.Body player;
+        int lastSec;
 
         public DBBrain(SDK.Body body)
         {
@@ -22,16 +23,19 @@ namespace Pet.Scirpt
         {
             //player.Position = new Point(player.Position.X + 1, player.Position.Y);
             var time = SDK.Game.Current.GameTime;
-            //if(time > 5*60*1000) do dance.
-            if (player.PlayFinished())
+            if (lastSec != DateTime.Now.Second)
             {
-                player.Play(BrainActionEnum.Stand.ToString());
+                lastSec = DateTime.Now.Second;
             }
+                if (player.PlayFinished())
+                {
+                    player.Play(BrainActionEnum.walk.ToString());
+                }
         }
     }
 
     internal enum BrainActionEnum
     {
-        Stand, Walk, Dance, Speak
+        stand_up, walk, idle, Speak
     }
 }

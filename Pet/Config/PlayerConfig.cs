@@ -48,6 +48,7 @@ namespace Pet.Config
                 var config = new PlayerConfig();
                 config.PlayerName = item.Name;
                 config.Manifest = item.FullName;
+                config.PlayerResource = @"E:\Work\Projects\pet.g\Pet\bin\Debug\Resources\GreyGuy.zip";
                 list.Add(config);
             }
             return list;

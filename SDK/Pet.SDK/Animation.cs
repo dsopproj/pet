@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Pet.SDK
 {
-    public class Animation : IAnimation
+    public partial class Animation : IAnimation
     {
         //fields & propertys
         private BrashMonkey.Spriter.Models.Entity mEntity;
         private BrashMonkey.Spriter.Models.Animation mAnimation;
         private BrashMonkey.Spriter.Infrastructure.SpriterKeyList<BrashMonkey.Spriter.Models.Folder> folders;
+        private Dictionary<string, Image> imgDict;
+
+
         private long startTime;
 
         public int ID { get { return mAnimation.ID; } }
@@ -20,32 +26,62 @@ namespace Pet.SDK
         //ctor
         public Animation(BrashMonkey.Spriter.Models.Entity entity,
             BrashMonkey.Spriter.Models.Animation animation,
-            BrashMonkey.Spriter.Infrastructure.SpriterKeyList<BrashMonkey.Spriter.Models.Folder> spriterKeyList)
+            BrashMonkey.Spriter.Infrastructure.SpriterKeyList<BrashMonkey.Spriter.Models.Folder> spriterKeyList,
+            Dictionary<string, Image> imgDict)
         {
             this.mEntity = entity;
             this.mAnimation = animation;
             this.folders = spriterKeyList;
+            this.imgDict = imgDict;
         }
 
         //interface
-        public void Play(Body body)
+        public void Play(Body body, BrashMonkey.Spriter.Models.ScmlReference scmlReference)
         {
-            float newTime = 0;
-            if (mAnimation.Looping)
+            scmlReference.SetEntity(mEntity.ID);
+            scmlReference.SetAnimation(mAnimation.ID);
+
+            scmlReference.Update(DateTime.Now.Millisecond);
+            var objs = scmlReference.GetTimelineObjects();
+            body.Children.Clear();
+            foreach (var item in objs)
             {
-                newTime = newTime % 360;
+                var fileKey = getFileKey(item.FolderID, item.FileID);
+                if (fileKey != null && imgDict.ContainsKey("/" + fileKey.Name))
+                {
+                    var img = imgDict["/" + fileKey.Name];
+                    img.Width = fileKey.Width;
+                    img.Height = fileKey.Height;
+
+                    TransformGroup tfg = new TransformGroup();
+                    var st = new ScaleTransform(item.ScaleX, item.ScaleY);
+                    tfg.Children.Add(st);
+                    var rt = new RotateTransform(360.0f - item.Angle);
+                    tfg.Children.Add(rt);
+                    var tt = new TranslateTransform(item.X, item.Y);
+                    tfg.Children.Add(tt);
+                    img.RenderTransform = tfg;
+                    body.Children.Add(img);
+                }
             }
-            else
+        }
+
+        private BrashMonkey.Spriter.Models.File getFileKey(int FolderID, int FileID)
+        {
+            foreach (var folder in folders)
             {
-                newTime = Math.Min(newTime, mAnimation.Length);
+                if (folder.ID == FolderID)
+                {
+                    foreach (var file in folder.Files)
+                    {
+                        if (file.ID == FileID)
+                        {
+                            return file;
+                        }
+                    }
+                }
             }
-
-
-            updateAnimation(newTime);
-            //updateCharacter(mainlineKeyFromTime(newTime), newTime);
-            
-            body.Draw();
-
+            return null;
         }
 
         private void updateAnimation(float newTime)

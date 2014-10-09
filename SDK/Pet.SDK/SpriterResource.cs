@@ -6,6 +6,8 @@ using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace Pet.SDK
 {
@@ -14,12 +16,16 @@ namespace Pet.SDK
 
         private bool isDisposed = false;
         private ScmlObject scmlObject;
-        public Dictionary<string, CroppedBitmap> imgDict = new Dictionary<string, CroppedBitmap>();
+        public Dictionary<string, Image> imgDict = new Dictionary<string, Image>();
+        private BrashMonkey.Spriter.Models.ScmlReference scmlReference;
+
+        public BrashMonkey.Spriter.Models.ScmlReference ScmlReference { get { return scmlReference; } }
 
         public SpriterResource(System.IO.FileStream fs)
         {
             scmlObject = parser(fs);
-
+            scmlReference = new ScmlReference();
+            scmlReference.Reference = scmlObject;
         }
 
 
@@ -36,7 +42,7 @@ namespace Pet.SDK
                     bi.BeginInit();
                     bi.StreamSource = item.GetStream();
                     bi.EndInit();
-                    CroppedBitmap bitmap = new CroppedBitmap();
+                    Image bitmap = new Image();
                     bitmap.Source = bi;
                     imgDict.Add(path, bitmap);
                 }
@@ -71,7 +77,7 @@ namespace Pet.SDK
             {
                 foreach (var animationItem in entity.Animations)
                 {
-                    IAnimation animation = new Animation(entity, animationItem, scmlObject.Folders);
+                    IAnimation animation = new Animation(entity, animationItem, scmlObject.Folders, imgDict);
                     list.Add(animation);
                 }
             }

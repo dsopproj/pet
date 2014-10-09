@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
-    <Compile Include="AnimationEx.cs" />
     <Compile Include="Body.cs" />
     <Compile Include="GameTime.cs" />
     <Compile Include="IAnimation.cs" />
