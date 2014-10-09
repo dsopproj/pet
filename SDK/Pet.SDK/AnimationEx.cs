@@ -7,7 +7,31 @@ namespace Pet.SDK
 {
     public partial class Animation
     {
+        int currentEntity;
+        int currentAnimation;
+
+
         float currentTime = 0;
+
+
+        SpatialInfo characterInfo()
+        {
+            // Fill a SpatialInfo class with the 
+            // x,y,angle,etc of this character in game
+
+            // To avoid distortion the character keep 
+            // scaleX and scaleY values equal
+
+            // Make scaleX or scaleY negative to flip on that axis
+
+            // Examples (scaleX,scaleY)
+            // (1,1) Normal size
+            // (-2.5,2.5) 2.5x the normal size, and flipped on the x axis
+            return new SpatialInfo();
+        }
+
+
+
         void setCurrentTime(float newTime)
         {
 
@@ -25,38 +49,37 @@ namespace Pet.SDK
 
         void updateCharacter(BrashMonkey.Spriter.Models.MainlineKey mainKey, int newTime)
     {
-        //BoneTimelineKey transformedBoneKeys[];
-        //for(b in mainKey.boneRefs[])
-        //{
-        //    SpatialInfo parentInfo;
-        //    Ref currentRef=mainKey.boneRefs[b]; 
-        //    if(currentRef.parent>=0)
-        //    {
-        //        parentInfo=transformBoneKeys[currentRef.parent].info;
-        //    }
-        //    else
-        //    {
-        //        parentInfo=characterInfo;
-        //    }
-
-        //    TimelineKey currentKey=keyFromRef(currentRef,newTime);
-        //    currentKey.info=currentKey.info.unmapFromParent(parentInfo);
-        //    transformBoneKeys.push(currentKey);
-        //}
+        BoneTimelineKey transformedBoneKeys[];
+        for(b in mainKey.boneRefs[])
+        {
+            SpatialInfo parentInfo;
+            var currentRef=mainKey.BoneReferences[b]; 
+            if(currentRef.Parent>=0)
+            {
+                parentInfo=transformBoneKeys[currentRef.Parent].info;
+            }
+            else
+            {
+                parentInfo=characterInfo();
+            }
+            TimelineKey currentKey=keyFromRef(currentRef,newTime);
+            currentKey.info=currentKey.info.unmapFromParent(parentInfo);
+            transformBoneKeys.push(currentKey);
+        }
 
         List<BrashMonkey.Spriter.Models.TimelineKey> objectKeys;
         for(int o=0; o<mainKey.ObjectReferences.Count;o++)
         {
             SpatialInfo parentInfo;
-            Ref currentRef=mainKey.objRefs[b];
+            var currentRef=mainKey.ObjectReferences[o];
 
-            if(currentRef.parent>=0)
+            if(currentRef.Parent>=0)
             {
-                parentInfo=transformBoneKeys[currentRef.parent].info;
+                parentInfo=transformBoneKeys[currentRef.Parent].info;
             }
             else
             {
-                parentInfo=characterInfo;
+                parentInfo=characterInfo();
             }
 
             BrashMonkey.Spriter.Models.TimelineKey currentKey=keyFromRef(currentRef,newTime);
@@ -90,6 +113,42 @@ namespace Pet.SDK
         }
 
 
+        BrashMonkey.Spriter.Models.TimelineKey keyFromRef(BrashMonkey.Spriter.Models.MainlineObjectReference objref, int newTime)
+        {
+            BrashMonkey.Spriter.Models.Timeline timeline = mAnimation.Timelines[objref.Timeline];
+            BrashMonkey.Spriter.Models.TimelineKey keyA = timeline.Keys[objref.Key];
+
+            if (timeline.Keys.Count == 1)
+            {
+                return keyA;
+            }
+
+            int nextKeyIndex = objref.Key + 1;
+
+            if (nextKeyIndex >= timeline.Keys.Count)
+            {
+                if (mAnimation.Looping)
+                {
+                    nextKeyIndex = 0;
+                }
+                else
+                {
+                    return keyA;
+                }
+            }
+
+            BrashMonkey.Spriter.Models.TimelineKey keyB = timeline.Keys[nextKeyIndex];
+            int keyBTime = keyB.Time;
+
+            if (keyBTime < keyA.Time)
+            {
+                keyBTime = keyBTime + mAnimation.Length;
+            }
+
+            return keyA.interpolate(keyB, keyBTime, currentTime);
+        }
+
+
     }
 
 
@@ -116,8 +175,8 @@ namespace Pet.SDK
             {
                 var preMultX = x * parentInfo.scaleX;
                 var preMultY = y * parentInfo.scaleY;
-                float s = sin(Math.toRadians(parentInfo.angle));
-                float c = cos(Math.toRadians(parentInfo.angle));
+                float s = (float)Math.Sin(BrashMonkey.Spriter.MathHelper.ToRadians(parentInfo.angle));
+                float c = (float)Math.Cos(BrashMonkey.Spriter.MathHelper.ToRadians(parentInfo.angle));
                 unmappedObj.x = (preMultX * c) - (preMultY * s);
                 unmappedObj.y = (preMultX * s) + (preMultY * c);
                 unmappedObj.x += parentInfo.x;
